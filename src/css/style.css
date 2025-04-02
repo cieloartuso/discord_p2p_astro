@@ -1,0 +1,373 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "gg sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+}
+
+:root {
+  --primary-button-color: #757fee;
+  --hover-button-color: #666fd3;
+  --background-primary-color: #313338;
+  --background-secondary-color: #2b2d31;
+  --input-background-color: #1e1f22;
+  --text-color: #ffffff;
+  --text-muted-color: #b5bac1;
+  --success-color: #3ba55c;
+  --error-color: #ed4245;
+  --highlight-color: #ff8c42;
+  --message-sent-color: #666fd3;
+  --message-received-color: #2b2d31;
+  --delete-hover-color: #c93437;
+}
+
+body {
+  background-color: var(--background-primary-color);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Username screen styles */
+.username-screen {
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--background-secondary-color);
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  text-align: center;
+}
+
+.username-screen h1 {
+  margin-bottom: 20px;
+  color: var(--text-color);
+  font-size: 24px;
+}
+
+.username-input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 3px;
+  font-size: 1em;
+  background-color: var(--input-background-color);
+  color: var(--text-color);
+  outline: none;
+}
+
+.start-chat-btn {
+  padding: 12px 25px;
+  background-color: var(--primary-button-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s;
+}
+
+.start-chat-btn:hover {
+  background-color: var(--hover-button-color);
+}
+
+/* Chat container */
+.chat-container {
+  width: 100%;
+  max-width: 800px;
+  height: 90vh;
+  background-color: var(--background-primary-color);
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-header {
+  padding: 15px 20px;
+  background-color: var(--background-secondary-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-bottom: 1px solid var(--input-background-color);
+}
+
+.chat-header h1 {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.peer-info {
+  font-size: 0.9em;
+  color: var(--text-muted-color);
+  cursor: pointer;
+}
+
+.connection-panel {
+  padding: 15px;
+  background-color: var(--background-secondary-color);
+  border-bottom: 1px solid var(--input-background-color);
+  display: flex;
+  gap: 10px;
+}
+
+.connection-input {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--input-background-color);
+  color: var(--text-color);
+  outline: none;
+}
+
+.connect-btn {
+  padding: 8px 15px;
+  background-color: var(--primary-button-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.connect-btn:hover {
+  background-color: var(--hover-button-color);
+}
+
+.messages {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--background-primary-color);
+  scrollbar-width: none; /* Per Firefox */
+  -ms-overflow-style: none; /* Per Internet Explorer e Edge */
+}
+
+.messages::-webkit-scrollbar {
+  display: none; /* Per Chrome, Safari e Opera */
+}
+
+.message {
+  max-width: 90%;
+  padding: 10px 15px;
+  border-radius: 3px;
+  font-size: 0.95em;
+  position: relative;
+  word-break: break-all;
+}
+
+.received {
+  background-color: var(--message-received-color);
+  align-self: flex-start;
+  color: var(--text-color);
+}
+
+.sent {
+  background-color: var(--message-sent-color);
+  align-self: flex-end;
+  color: var(--text-color);
+}
+
+.sent .sender-name {
+  color: var(--background-secondary-color);
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted-color);
+  cursor: pointer;
+  font-size: 1em;
+  padding: 0 5px;
+  visibility: hidden;
+}
+
+.message.sent:hover .delete-btn {
+  visibility: visible;
+}
+
+.delete-btn:hover {
+  color: var(--error-color);
+}
+
+em {
+  color: var(--text-muted-color);
+  font-style: italic;
+}
+
+.timestamp {
+  font-size: 0.7em;
+  color: var(--text-muted-color);
+  margin-top: 3px;
+}
+
+.sender-name {
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: var(--primary-button-color);
+}
+
+.input-area {
+  padding: 15px;
+  border-top: 1px solid var(--input-background-color);
+  display: flex;
+  gap: 10px;
+  background-color: var(--background-primary-color);
+}
+
+.message-input {
+  flex-grow: 1;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--input-background-color);
+  color: var(--text-color);
+  outline: none;
+}
+
+.send-btn {
+  padding: 10px 20px;
+  background-color: var(--primary-button-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.send-btn:hover {
+  background-color: var(--hover-button-color);
+}
+
+.send-btn:disabled {
+  background-color: #4f545c;
+  cursor: not-allowed;
+}
+
+.status {
+  padding: 10px 15px;
+  font-size: 0.8em;
+  text-align: center;
+  background-color: var(--background-secondary-color);
+  color: var(--text-muted-color);
+}
+
+.success {
+  color: var(--success-color);
+}
+
+.error {
+  color: var(--error-color);
+}
+
+.connected-peers {
+  padding: 10px 15px;
+  background-color: var(--background-secondary-color);
+  border-bottom: 1px solid var(--input-background-color);
+  color: var(--text-color);
+}
+
+.no-peers {
+  color: var(--text-muted-color);
+  font-size: 0.9em;
+  text-align: center;
+  padding: 5px 0;
+}
+
+.peers-title {
+  font-size: 0.9em;
+  color: var(--text-muted-color);
+  margin-bottom: 8px;
+}
+
+.peer-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background-color: var(--background-primary-color);
+  border-radius: 3px;
+  margin-bottom: 5px;
+}
+
+/* Colore evidenziato per il proprio nome */
+.peer-item.self {
+  color: var(--primary-button-color); 
+}
+
+.disconnect-btn {
+  padding: 4px 8px;
+  background-color: var(--input-background-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.8em;
+  transition: background-color 0.2s;
+}
+
+.disconnect-btn:hover {
+  background-color: var(--delete-hover-color);
+}
+
+.id-options {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.id-option-btn {
+  padding: 12px 20px;
+  background-color: var(--primary-button-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s;
+}
+
+.id-option-btn:hover {
+  background-color: var(--hover-button-color);
+}
+
+.join-host-input {
+  margin-top: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+.main-page-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: var(--primary-button-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s;
+}
+
+.main-page-btn:hover {
+  background-color: var(--hover-button-color);
+}
